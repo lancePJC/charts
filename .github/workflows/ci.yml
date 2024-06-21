@@ -13,19 +13,13 @@ jobs:
       group: production
       cancel-in-progress: true
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          NODE_VERSION: '18'
- 
-      - name: Verify Node.js version
-        run: node --version
+   steps:
+  - name: Checkout repository
+    uses: actions/checkout@v2
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Add your deployment steps here
-      - name: Deploy to production
-        run: |
-          echo "Deploying..."
-          # Add your deployment script or commands here
+  - name: Deploy to production
+    run: |
+      echo "Deploying..."
+      # Add your deployment script or commands here
