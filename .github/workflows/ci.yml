@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - lance-charts  # Trigger on pushes to lance-charts branch
+
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          # Example: If you have a backend and frontend, install dependencies for both
+          cd backend && npm install
+          cd ../frontend && npm install
+
+      - name: Build backend
+        run: cd backend && npm run build
+
+      - name: Build frontend
+        run: cd frontend && npm run build
+
+      # Add additional steps like testing, linting, etc.
+
+      - name: Deploy to production
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          echo "Deploying..."
+          # Add your deployment script here
