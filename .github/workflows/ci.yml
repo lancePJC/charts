@@ -19,8 +19,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          NODE_VERSION: '20'
-
+          NODE_VERSION: '18'
+ 
       - name: Verify Node.js version
         run: node --version
 
